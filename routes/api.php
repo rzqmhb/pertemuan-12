@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('/mahasiswa', MahasiswaController::class);
+    Route::get('/logout', [ApiAuthController::class, 'logout']);
 });
 
 Route::post('/login', [ApiAuthController::class, 'login']);
@@ -28,4 +29,4 @@ Route::get('/hello', function(){
     return 'hello world';
 });
 
-Route::apiResource('/mahasiswa', MahasiswaController::class);
+// Route::apiResource('/mahasiswa', MahasiswaController::class);
